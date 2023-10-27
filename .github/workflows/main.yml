@@ -1,0 +1,17 @@
+name: ci-cd
+on:
+  push:
+    branches: ["main"]
+
+jobs: 
+  CI:
+    runs-on: ubuntu-lateast
+  
+    steps:
+      - uses: actions/checkout@v4.1.1
+      - name: Contrução da imagem Docker
+        uses: docker/build-push-action@0565240e2d4ab88bba5387d719585280857ece09
+        with:
+          context: ./src
+          
+  
