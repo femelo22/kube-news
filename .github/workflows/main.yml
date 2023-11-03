@@ -1,17 +1,22 @@
-name: ci-cd
+name: CI/CD-KUBENEWS
+
 on:
   push:
-    branches: ["main"]
+    branches:
+    - main
 
-jobs: 
+jobs:
   CI:
     runs-on: ubuntu-lateast
-  
+
     steps:
       - uses: actions/checkout@v4.1.1
-      - name: Contrução da imagem Docker
-        uses: docker/build-push-action@0565240e2d4ab88bba5387d719585280857ece09
+      - name: Construção da imagem Docker
+        uses: docker/build-push-action@v5.0.0
         with:
           context: ./src
-          
-  
+          file: ./Dockerfile
+          push: true
+          tags: |
+            femelo/cicd-kube-news:v1
+            femelo/cicd-kube-news:lateast
